@@ -10,7 +10,7 @@ class NewVisitorTest(unittest.TestCase):
     def setUp(self):
         self.browser = webdriver.WebDriver(
             command_executor="http://selenium:4444/wd/hub",
-            desired_capabilities=DesiredCapabilities.FIREFOX
+            desired_capabilities=DesiredCapabilities.CHROME
         )
 
         self.browser.implicitly_wait(3)
