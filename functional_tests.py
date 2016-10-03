@@ -1,12 +1,18 @@
-from selenium import webdriver
+from selenium.webdriver.remote import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.keys import Keys
+
 import unittest
 
 class NewVisitorTest(unittest.TestCase):
+    live_server_url = 'http://web:8000/'
 
     def setUp(self):
-        chromedriver = "/usr/local/bin/chromedriver"
-        self.browser = webdriver.Chrome(chromedriver)
+        self.browser = webdriver.WebDriver(
+            command_executor="http://selenium:4444/wd/hub",
+            desired_capabilities=DesiredCapabilities.FIREFOX
+        )
+
         self.browser.implicitly_wait(3)
 
     def tearDown(self):
@@ -15,7 +21,7 @@ class NewVisitorTest(unittest.TestCase):
     def test_can_start_a_list_and_retrieve_it_later(self):
         # Edith has heard about a cool new online to-do app. She goes to check
         # out its homepage
-        self.browser.get('http://localhost:8000')
+        self.browser.get(self.live_server_url)
 
         # She notices the page title and header mention to-do lists
         self.assertIn('To-Do', self.browser.title)

@@ -1,0 +1,5 @@
+Django==1.8.14
+bpython
+coverage
+isort
+selenium==2.53.6
