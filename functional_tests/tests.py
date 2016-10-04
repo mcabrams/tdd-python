@@ -1,10 +1,9 @@
+from django.test import LiveServerTestCase
 from selenium.webdriver.remote import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.common.keys import Keys
 
-import unittest
-
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
     live_server_url = 'http://web:8000/'
 
     def setUp(self):
@@ -70,6 +69,3 @@ class NewVisitorTest(unittest.TestCase):
         # She visits that URL - her to-do list is still there.
 
         # Satisfied, she goes back to sleep
-
-if __name__ == '__main__':
-    unittest.main()
