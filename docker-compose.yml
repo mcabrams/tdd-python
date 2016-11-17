@@ -1,0 +1,24 @@
+version: '2'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - selenium
+    environment:
+      TERM: xterm-256color # For bpython to work
+    ports:
+      - "8001:8000"
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/usr/src/app
+
+  selenium:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - "5900:5900"
+    environment:
+      no_proxy: localhost # https://github.com/SeleniumHQ/docker-selenium/issues/227
+      HUB_ENV_no_proxy: localhost # https://github.com/SeleniumHQ/docker-selenium/issues/227
